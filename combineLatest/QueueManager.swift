@@ -37,7 +37,7 @@ class QueueManager {
         Future { [weak self] promise in
             self?.queueOne.async {
                 print("Start process on \(self?.queueOne.label ?? "")")
-                let isSuccess = 1<2
+                let isSuccess = true
                 if isSuccess {
                     promise(.success(TaskSuccess.taskOneSuccess(Date())))
                 } else {
@@ -51,7 +51,7 @@ class QueueManager {
         Future { [weak self] promise in
             self?.queueTow.asyncAfter(deadline: .now() + 1) {
                 print("Start process on \(self?.queueTow.label ?? "")")
-                let isSuccess = 1<2
+                let isSuccess = true
                 if isSuccess {
                     promise(.success(TaskSuccess.taskTowSuccess(Date())))
                 } else {
@@ -65,7 +65,7 @@ class QueueManager {
         Future { [weak self] promise in
             self?.queueThree.asyncAfter(deadline: .now() + 2) {
                 print("Start process on \(self?.queueThree.label ?? "")")
-                let isSuccess = 1<2
+                let isSuccess = true
                 if isSuccess {
                     promise(.success(TaskSuccess.taskThreeSuccess(Date())))
                 } else {
