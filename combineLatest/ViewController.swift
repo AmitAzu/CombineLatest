@@ -30,28 +30,23 @@ class ViewController: UIViewController {
                 case .failure(let error):
                     self?.handleError(error: error)
                 }
-            } receiveValue: { [weak self] queueOneResult, queueTowResult, queueThreeResult in
-                self?.handleSuccess(queueOneResult: queueOneResult, queueTowResult: queueTowResult, queueThreeResult: queueThreeResult)
+            } receiveValue: { [weak self] taskOneResult, taskTowResult, taskThreeResult in
+                self?.handleSuccess(taskOneResult: taskOneResult, taskTowResult: taskTowResult, taskThreeResult: taskThreeResult)
             }.store(in: &storeBag)
     }
     
-    func handleError(error: Error) {
-        guard let error = error as? QueueError else { return }
+    private func handleError(error: Error) {
+        guard let error = error as? TaskError else { return }
         switch error {
-        case .queueOneError(_): break
-        case .queueTowError(_): break
-        case .queueThreeError(_): break
+        case .taskOneError(_): break
+        case .taskTowError(_): break
+        case .taskThreeError(_): break
         }
         print("error: \(error)")
     }
     
-    func handleSuccess(queueOneResult: QueueSuccess, queueTowResult: QueueSuccess, queueThreeResult: QueueSuccess) {
-        print("queue one result: \(queueOneResult)\nqueue tow result: \(queueTowResult)\nqueue three result: \(queueThreeResult)")
-        if Thread.isMainThread {
-            print("completed on the Main Thread")
-        } else {
-            print("completed NOT on the Main Thread")
-        }
+    private func handleSuccess(taskOneResult: TaskSuccess, taskTowResult: TaskSuccess, taskThreeResult: TaskSuccess) {
+        print("queue one result: \(taskOneResult)\nqueue tow result: \(taskTowResult)\nqueue three result: \(taskThreeResult).\ncompleted\(Thread.isMainThread ? "" : "NOT") on the Main Thread")
     }
 }
 
