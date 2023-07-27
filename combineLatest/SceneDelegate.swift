@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  combineLatest
+//  CombineLatest
 //
 //  Created by Amit Azulay on 27/07/2023.
 //
